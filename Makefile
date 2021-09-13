@@ -62,7 +62,7 @@ NAME_SERVER=		server
 
 NAME_CLIENT=		client
 
-CC=					cc -pthread
+CC=					cc
 RM=					rm -f
 LD=					ld
 
