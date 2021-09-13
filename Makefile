@@ -24,14 +24,14 @@ LIBS_INC=			${foreach LIBS, ${LIBS}, ${LIBS_INC_F}}
 
 LIBS_HEADERS=		${patsubst %.a, %.h, ${LIBS}}
 
-HEADERS_PHILO=		headers/philo.h
+HEADERS_MINITALK=	headers/minitalk.h
 
-HEADERS_B_PHILO=
+HEADERS_MINITALK_B=headers/minitalk.h
 
-HEADERS=			${LIBS_HEADERS} ${HEADERS_PHILO}
+HEADERS=			${LIBS_HEADERS} ${HEADERS_MINITALK}
 
 ifdef COMPILE_BONUS
-HEADERS:=			${HEADERS} ${HEADERS_B_PHILO}
+HEADERS:=			${HEADERS} ${HEADERS_MINITALK_B}
 endif
 
 INC_HEADERS_FORMAT=	-I ${dir ${HEADERS}}
@@ -39,8 +39,12 @@ INC_HEADERS_FORMAT=	-I ${dir ${HEADERS}}
 INC_HEADERS_DIR=	${foreach HEADERS, ${HEADERS}, ${INC_HEADERS_FORMAT}}
 
 SRCS_C_SERVER=		src/server.c \
+					src/minitalk_catch.c \
+					src/minitalk_send.c \
 
 SRCS_C_CLIENT=		src/client.c \
+					src/minitalk_catch.c \
+					src/minitalk_send.c \#in
 
 SRCS_C_SERVER_B=	src/server_bonus.c \
 

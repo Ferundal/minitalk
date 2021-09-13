@@ -13,5 +13,14 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
+# include "libft.h"
+# include <unistd.h>
 # include <signal.h>
+# include <limits.h>
+
+# define CLIENT_SEND_DEALAY 100
+
+int	send_int(int d, pid_t server_pid);
+int	send_char(char c, pid_t server_pid);
+int	send_str(char *str, pid_t server_pid);
 #endif
