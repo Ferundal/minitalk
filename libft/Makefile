@@ -13,7 +13,7 @@
 LIBHEADER		= libft.h
 
 LIBC=			ft_memset.c \
-				t_bzero.c \
+				ft_bzero.c \
 				ft_memcpy.c \
 				ft_memccpy.c \
 				ft_memmove.c \
