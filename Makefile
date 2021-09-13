@@ -64,7 +64,7 @@ NAME_CLIENT=		client
 
 CC=					cc -pthread
 RM=					rm -f
-LD=					ld -pthread
+LD=					ld
 
 ALL_CFLAGS=			-Wall -Wextra -Werror -g ${INC_HEADERDIR} ${CFLAGS}
 ALL_LDFLAGS=		-g ${LDFLAGS}
