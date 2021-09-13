@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_usleep.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjettie <cjettie@21-school.ru>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 20:34:27 by cjettie           #+#    #+#             */
-/*   Updated: 2021/09/10 20:34:29 by cjettie          ###   ########.fr       */
+/*   Created: 2020/11/13 19:05:27 by cjettie           #+#    #+#             */
+/*   Updated: 2020/11/15 15:38:28 by cjettie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <stddef.h>
+#include "libft.h"
 
-void	my_usleep(long long int	time_to_sleep)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	struct timeval	curr_time;
-	ssize_t			start_time;
+	t_list	*temp;
 
-	gettimeofday(&curr_time, NULL);
-	start_time = curr_time.tv_sec * 1000000 + curr_time.tv_usec;
-	while (time_to_sleep > ((curr_time.tv_sec * 1000000 \
-							+ curr_time.tv_usec - start_time)))
+	if (lst != NULL)
 	{
-		gettimeofday(&curr_time, NULL);
-		usleep(100);
+		if (new != NULL)
+		{
+			if (*lst == NULL)
+			{
+				*lst = new;
+			}
+			else
+			{
+				temp = *lst;
+				while (temp->next != NULL)
+					temp = temp->next;
+				temp->next = new;
+			}
+		}
 	}
 }

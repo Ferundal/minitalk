@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_free.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjettie <cjettie@21-school.ru>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 20:43:59 by cjettie           #+#    #+#             */
-/*   Updated: 2021/09/10 20:44:00 by cjettie          ###   ########.fr       */
+/*   Created: 2020/11/07 16:29:17 by cjettie           #+#    #+#             */
+/*   Updated: 2020/11/07 16:38:13 by cjettie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <stddef.h>
 
-void	*destroy_philo_mutex(t_p_arg *p_arg_p, int counter)
+char	*ft_strrchr(const char *s, int c)
 {
-	while (counter-- > 0)
+	char	t_c;
+	char	*result;
+
+	t_c = (char)c;
+	result = NULL;
+	while (*s != '\0')
 	{
-		pthread_mutex_destroy(&p_arg_p->p.d_t_acc);
-		pthread_mutex_destroy(&p_arg_p->p.n_t_f_acc);
+		if (*s == t_c)
+		{
+			result = (char *)s;
+		}
+		s++;
 	}
-	return (NULL);
-}
-
-int	clean(int status)
-{
-	return (status);
+	if (*s == t_c)
+	{
+		result = (char *)s;
+	}
+	return (result);
 }

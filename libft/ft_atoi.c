@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <limits.h>
+#include "libft.h"
 
 static void	ft_skip(const char **str, int *sign)
 {

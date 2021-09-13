@@ -14,7 +14,7 @@ SHELL = /bin/sh		#for systems where SHELL variable can be inherited from environ
 
 .SUFFIXES:			#no suffix rules are used
 
-LIBS=
+LIBS=				libft/libft.a
 
 LIBS_DIR=			${dir ${LIBS}}
 
@@ -38,31 +38,29 @@ INC_HEADERS_FORMAT=	-I ${dir ${HEADERS}}
 
 INC_HEADERS_DIR=	${foreach HEADERS, ${HEADERS}, ${INC_HEADERS_FORMAT}}
 
-SRCS_C=				src/main.c \
-					src/philo_errors.c \
-					src/ft_isdigit.c \
-					src/philo.c \
-					src/philo_output.c \
-					src/philo_usleep.c \
-					src/ft_atoi.c \
-					src/philo_init.c \
-					src/philo_simulation.c \
-					src/philo_overseer.c \
-					src/philo_free.c \
-					src/philo_acc_mutexes.c \
-					src/philo_start.c \
+SRCS_C_SERVER=		src/server.c \
 
-SRCS_C_BONUS=
+SRCS_C_CLIENT=		src/client.c \
+
+SRCS_C_SERVER_B=	src/server_bonus.c \
+
+SRCS_C_CLIENT_B=	src/client_bonus.c \
 
 ifdef COMPILE_BONUS
-SRCS_C:=			${SRCS_C} ${SRCS_C_BONUS}
+SRCS_C_SERVER:=		${SRCS_C_SERVER_B}
+
+SRCS_C_CLIENT:=		${SRCS_C_CLIENT_B}
 endif
 
-OBJS_C_BONUS=		${SRCS_C_BONUS:.s=.o}
+OBJ_C_SERVER=		${SRCS_C_SERVER:src/%.c=obj/%.o}
 
-OBJS_C=				${SRCS_C:src/%.c=obj/%.o}
+OBJ_C_CLIENT=		${SRCS_C_CLIENT:src/%.c=obj/%.o}
 
-NAME=				philo
+NAME=				minitalk
+
+NAME_SERVER=		server
+
+NAME_CLIENT=		client
 
 CC=					cc -pthread
 RM=					rm -f
@@ -73,7 +71,7 @@ ALL_LDFLAGS=		-g ${LDFLAGS}
 
 NORM=				norminette ${NORMO}
 
-.PHONY:				all clean fclean re bonus libs_make libs_clean
+.PHONY:				all clean fclean re bonus libs_make libs_clean minitalk
 
 all:				libs_make ${NAME}
 
@@ -83,8 +81,13 @@ libs_make:
 obj/%.o:			src/%.c ${HEADERS}
 					${CC} ${ALL_CFLAGS} ${INC_HEADERS_DIR} -c ${<} -o ${<:src/%.c=obj/%.o}
 
-${NAME}:			${OBJS_C} ${LIBS}
-					${CC} ${ALL_LDFLAGS} ${OBJS_C} ${LIBS_INC} ${LIBS_EXT} -o ${NAME}
+${NAME}:			${NAME_SERVER} ${NAME_CLIENT}
+
+${NAME_SERVER}:		${OBJ_C_SERVER} ${LIBS}
+					${CC} ${ALL_LDFLAGS} ${OBJ_C_SERVER} ${LIBS_INC} ${LIBS_EXT} -o ${NAME_SERVER}
+
+${NAME_CLIENT}:		${OBJ_C_CLIENT} ${LIBS}
+					${CC} ${ALL_LDFLAGS} ${OBJ_C_CLIENT} ${LIBS_INC} ${LIBS_EXT} -o ${NAME_CLIENT}
 
 bonus:
 					${MAKE} COMPILE_BONUS=1 all
