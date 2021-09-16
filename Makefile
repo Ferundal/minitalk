@@ -44,7 +44,7 @@ SRCS_C_SERVER=		src/server.c \
 
 SRCS_C_CLIENT=		src/client.c \
 					src/minitalk_catch.c \
-					src/minitalk_send.c \#in
+					src/minitalk_send.c \
 
 SRCS_C_SERVER_B=	src/server_bonus.c \
 
