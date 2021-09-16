@@ -9,7 +9,7 @@ int	check_args(int argc, char **argv)
 	}
 	if (ft_isdigit_str(argv[1]) == 0)
 	{
-		ft_putstr_fd("Wrong pid\n", 2);
+		ft_putstr_fd("Wrong client_pid\n", 2);
 		return (1);
 	}
 	return (0);
