@@ -24,7 +24,7 @@ int	main(void)
 	ft_putchar_fd('\n', 1);
 	set_sigaction(&zero_reaction, &one_reaction);
 	sigaction(SIGUSR1, &zero_reaction, NULL);
-	sigaction(SIGUSR2, &zero_reaction, NULL);
+	sigaction(SIGUSR2, &one_reaction, NULL);
 	g_data.client_pid = 0;
 	g_data.status = 0;
 	g_data.value = 0;
