@@ -20,7 +20,6 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)sig;
 	(void)ucontext;
 	g_data.client_pid = info->si_pid;
-
 	g_data.value = g_data.value << 1;
 	++g_data.value;
 	if (g_data.status == 7)
@@ -38,10 +37,12 @@ void	set_sigaction(struct sigaction *zero_reaction, \
 	zero_reaction->sa_handler = NULL;
 	zero_reaction->sa_sigaction = zero_handler;
 	sigemptyset(&zero_reaction->sa_mask);
+	zero_reaction->sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, zero_reaction, NULL);
 	one_reaction->sa_handler = NULL;
 	one_reaction->sa_sigaction = one_handler;
 	sigemptyset(&one_reaction->sa_mask);
+	zero_reaction->sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR2, one_reaction, NULL);
 }
 
@@ -55,8 +56,6 @@ int	main(void)
 	ft_putnbr_fd(server_pid, 1);
 	ft_putchar_fd('\n', 1);
 	set_sigaction(&zero_reaction, &one_reaction);
-	sigaction(SIGUSR1, &zero_reaction, NULL);
-	sigaction(SIGUSR2, &one_reaction, NULL);
 	g_data.client_pid = 0;
 	g_data.status = 0;
 	g_data.value = 0;
