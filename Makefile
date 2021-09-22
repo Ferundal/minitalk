@@ -39,12 +39,8 @@ INC_HEADERS_FORMAT=	-I ${dir ${HEADERS}}
 INC_HEADERS_DIR=	${foreach HEADERS, ${HEADERS}, ${INC_HEADERS_FORMAT}}
 
 SRCS_C_SERVER=		src/server.c \
-					src/minitalk_catch.c \
-					src/minitalk_send.c \
 
 SRCS_C_CLIENT=		src/client.c \
-					src/minitalk_catch.c \
-					src/minitalk_send.c \
 
 SRCS_C_SERVER_B=	src/server_bonus.c \
 
