@@ -13,26 +13,22 @@ void	set_sigaction(struct sigaction *zero_reaction, \
 	sigaction(SIGUSR2, one_reaction, NULL);
 }
 
-
 int	main(void)
 {
 	pid_t				server_pid;
 	struct sigaction	zero_reaction;
 	struct sigaction	one_reaction;
-	char 				curr_val;
 
 	server_pid = getpid();
 	ft_putnbr_fd(server_pid, 1);
 	ft_putchar_fd('\n', 1);
 	set_sigaction(&zero_reaction, &one_reaction);
+	g_data.client_pid = 0;
 	g_data.status = 0;
+	g_data.value = 0;
 	while (1)
 	{
-		pause();
-		curr_val = catch_char_value();
-		if (curr_val == '\0')
-			curr_val = '\n';
-		ft_putchar_fd(curr_val, 1);
+		(void)server_pid;
 	}
 	return (0);
 }

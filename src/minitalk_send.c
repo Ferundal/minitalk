@@ -5,7 +5,6 @@ int	send_int(int d, pid_t server_pid)
 	int		counter;
 	int 	temp_d;
 
-
 	counter = 8;
 	while (counter-- > 0)
 	{
@@ -31,6 +30,7 @@ int	send_char(char c, pid_t server_pid)
 	int		counter;
 	char	temp_c;
 
+	(void)server_pid;
 	counter = 8;
 	while (counter-- > 0)
 	{

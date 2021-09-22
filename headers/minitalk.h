@@ -21,9 +21,9 @@
 
 typedef struct s_current
 {
-	int		status;
 	pid_t	client_pid;
-	char	value;
+	int		status;
+	int 	value;
 } t_current;
 
 t_current	g_data;
