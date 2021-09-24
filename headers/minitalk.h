@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <signal.h>
 # include <limits.h>
-# define CLIENT_SEND_DEALAY 500
+# define CLIENT_SEND_DEALAY 200
 
 typedef struct s_current
 {
