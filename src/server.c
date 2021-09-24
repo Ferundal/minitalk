@@ -43,7 +43,7 @@ int	main(void)
 	g_data.value = 0;
 	while (1)
 	{
-		pause();
+		1;
 	}
 	return (0);
 }
