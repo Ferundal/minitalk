@@ -62,6 +62,12 @@ NAME_SERVER=		server
 
 NAME_CLIENT=		client
 
+ifdef COMPILE_BONUS
+NAME_SERVER=		server_bonus
+
+NAME_CLIENT=		client_bonus
+endif
+
 CC=					cc
 RM=					rm -f
 LD=					ld
@@ -104,7 +110,7 @@ clean:
 fclean:
 					${foreach LIBS_DIR, ${LIBS_DIR}, ${MAKE} -C ${LIBS_DIR} fclean}
 					${RM} ${OBJS_C} ${OBJS_C_BONUS}
-					${RM} ${NAME}
+					${RM} ${NAME_SERVER} ${NAME_CLIENT}
 
 norm:		
 					${NORM} ${LIBS_DIR} *.c *.h
