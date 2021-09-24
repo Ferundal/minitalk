@@ -22,6 +22,7 @@ int	send_int(int d, pid_t server_pid)
 		}
 		usleep(CLIENT_SEND_DEALAY);
 	}
+	pause();
 	return (0);
 }
 
@@ -44,7 +45,6 @@ int	send_str(char *str, pid_t server_pid)
 			return (1);
 	if (send_int('\n', server_pid) != 0)
 		return (1);
-	ft_putchar_fd('\n', 1);
 	return (0);
 }
 
