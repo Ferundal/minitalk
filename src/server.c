@@ -24,7 +24,7 @@ void	set_sigaction(struct sigaction *reaction)
 	sigemptyset(&reaction->sa_mask);
 	sigaddset(&reaction->sa_mask, SIGUSR1);
 	sigaddset(&reaction->sa_mask, SIGUSR2);
-	//reaction->sa_flags = SA_SIGINFO;
+	reaction->sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, reaction, NULL);
 	sigaction(SIGUSR1, reaction, NULL);
 }
