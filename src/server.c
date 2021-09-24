@@ -1,5 +1,6 @@
 #include "minitalk.h"
 
+
 void	handler(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)sig;
@@ -10,8 +11,9 @@ void	handler(int sig, siginfo_t *info, void *ucontext)
 		++g_data.value;
 	if (g_data.status == 7)
 	{
-		g_data.status = 0;
 		ft_putchar_fd(g_data.value, 1);
+		g_data.status = 0;
+		g_data.value = 0;
 	}
 	else
 		++g_data.status;
@@ -25,7 +27,7 @@ void	set_sigaction(struct sigaction *reaction)
 	sigaddset(&reaction->sa_mask, SIGUSR2);
 	reaction->sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, reaction, NULL);
-	sigaction(SIGUSR1, reaction, NULL);
+	sigaction(SIGUSR2, reaction, NULL);
 }
 
 int	main(void)
