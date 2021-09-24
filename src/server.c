@@ -7,8 +7,6 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)ucontext;
 	g_data.client_pid = info->si_pid;
 	g_data.value = g_data.value << 1;
-	if (sig == SIGUSR2)
-		++g_data.value;
 	if (g_data.status == 7)
 	{
 		ft_putchar_fd(g_data.value, 1);
@@ -25,8 +23,7 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)ucontext;
 	g_data.client_pid = info->si_pid;
 	g_data.value = g_data.value << 1;
-	if (sig == SIGUSR2)
-		++g_data.value;
+	++g_data.value;
 	if (g_data.status == 7)
 	{
 		ft_putchar_fd(g_data.value, 1);
@@ -69,7 +66,7 @@ int	main(void)
 	g_data.value = 0;
 	while (1)
 	{
-		(void)one_reaction;
+		pause();
 	}
 	return (0);
 }
