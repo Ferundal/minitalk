@@ -63,7 +63,7 @@ int	send_str(char *str, pid_t server_pid)
 
 int	check_args(int argc, char **argv)
 {
-	if (argc < 3 || argc > 4)
+	if (argc != 3)
 	{
 		ft_putstr_fd("Wrong arguments amount\n", 2);
 		return (1);
