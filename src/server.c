@@ -66,7 +66,7 @@ int	main(void)
 	g_data.value = 0;
 	while (1)
 	{
-		(void)server_pid;
+		pause();
 	}
 	return (0);
 }
