@@ -56,7 +56,7 @@ int	send_str(char *str, pid_t server_pid)
 	while (*str != '\0')
 		if (send_char(*str++, server_pid) != 0)
 			return (1);
-	if (send_char(*str, server_pid) != 0)
+	if (send_char('\n', server_pid) != 0)
 		return (1);
 	return (0);
 }

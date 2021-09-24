@@ -27,10 +27,4 @@ typedef struct s_current
 } t_current;
 
 t_current	g_data;
-
-int		send_int(int d, pid_t server_pid);
-int		send_char(char c, pid_t server_pid);
-int		send_str(char *str, pid_t server_pid);
-void	handler(int sig, siginfo_t *info, void *ucontext);
-void	one_handler(int sig, siginfo_t *info, void *ucontext);
 #endif
