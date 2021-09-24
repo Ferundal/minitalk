@@ -4,11 +4,11 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)sig;
 	(void)ucontext;
-	g_data.client_pid = info->si_pid;
 	g_data.value = g_data.value << 1;
 	if (g_data.status == 31)
 	{
 		ft_putchar_fd(g_data.value, 1);
+		kill(info->si_pid, SIGUSR1);
 		g_data.status = 0;
 		g_data.value = 0;
 	}
@@ -20,12 +20,12 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)sig;
 	(void)ucontext;
-	g_data.client_pid = info->si_pid;
 	g_data.value = g_data.value << 1;
 	++g_data.value;
 	if (g_data.status == 31)
 	{
 		ft_putchar_fd(g_data.value, 1);
+		kill(info->si_pid, SIGUSR1);
 		g_data.status = 0;
 		g_data.value = 0;
 	}

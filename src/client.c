@@ -61,7 +61,7 @@ int	send_str(char *str, pid_t server_pid)
 	return (0);
 }
 
-int	check_args(int argc, char **argv)
+int	check_args(int argc, char **argv, pid_t	*server_pid)
 {
 	if (argc != 3)
 	{
@@ -73,6 +73,12 @@ int	check_args(int argc, char **argv)
 		ft_putstr_fd("Wrong client_pid\n", 2);
 		return (1);
 	}
+	*server_pid = ft_atoi(argv[1]);
+	if (*server_pid == 0)
+	{
+		ft_putstr_fd("Wrong pid\n", 2);
+		return (1);
+	}
 	return (0);
 }
 
@@ -80,9 +86,8 @@ int	main(int argc, char **argv)
 {
 	pid_t	server_pid;
 
-	if (check_args(argc, argv) != 0)
+	if (check_args(argc, argv, &server_pid) != 0)
 		return (1);
-	server_pid = ft_atoi(argv[1]);
 	if (send_str(argv[2], server_pid) != 0)
 	{
 		ft_putstr_fd("Error while sending string\n", 2);
