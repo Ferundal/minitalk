@@ -43,7 +43,7 @@ int	main(void)
 	g_data.value = 0;
 	while (1)
 	{
-		1;
+		(void)reaction;
 	}
 	return (0);
 }
