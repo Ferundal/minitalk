@@ -19,7 +19,7 @@ void	handler(int sig, siginfo_t *info, void *ucontext)
 
 void	set_sigaction(struct sigaction *reaction)
 {
-	reaction->sa_handler = NULL;
+	reaction->sa_handler = SIG_IGN;
 	reaction->sa_sigaction = handler;
 	sigemptyset(&reaction->sa_mask);
 	sigaddset(&reaction->sa_mask, SIGUSR1);
