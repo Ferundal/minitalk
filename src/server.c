@@ -8,7 +8,7 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 	g_data.value = g_data.value << 1;
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
-		ft_putchar_fd(g_data.value, 1);
+		ft_putchar_fd(g_data.value, 2);
 		usleep(MINITALK_OUTPUT_DEALAY);
 		g_data.status = 1;
 		g_data.value = 0;
@@ -27,7 +27,7 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 	++g_data.value;
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
-		ft_putchar_fd(g_data.value, 1);
+		ft_putchar_fd(g_data.value, 2);
 		usleep(MINITALK_OUTPUT_DEALAY);
 		g_data.status = 1;
 		g_data.value = 0;
