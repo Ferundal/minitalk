@@ -6,7 +6,6 @@ int	send_char(int d, pid_t server_pid)
 	int 	temp_d;
 
 	counter = VALUE_BIT_SIZE;
-	d = d >> 1;
 	while (counter-- > 0)
 	{
 		temp_d = d >> counter;
