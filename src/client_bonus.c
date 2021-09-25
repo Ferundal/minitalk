@@ -5,7 +5,7 @@ int	send_char(int d, pid_t server_pid)
 	int		counter;
 	int 	temp_d;
 
-	counter = 7;
+	counter = 8;
 	while (counter-- > 0)
 	{
 		temp_d = d >> counter;

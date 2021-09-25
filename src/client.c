@@ -5,7 +5,7 @@ int	send_int(int d, pid_t server_pid)
 	int		counter;
 	int 	temp_d;
 
-	counter = 8;
+	counter = 32;
 	while (counter-- > 0)
 	{
 		temp_d = d >> counter;
