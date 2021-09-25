@@ -17,8 +17,8 @@
 # include <unistd.h>
 # include <signal.h>
 # include <limits.h>
-# define MINITALK_SERVER_DEALAY 20
-# define MINITALK_CLIENT_DEALAY 5
+# define MINITALK_SERVER_DEALAY 100
+# define MINITALK_CLIENT_DEALAY 0
 # define VALUE_BIT_SIZE 8
 # define MINITALK_SERVER_DEALAY_BONUS 5
 # define MINITALK_CLIENT_DEALAY_BONUS 5
