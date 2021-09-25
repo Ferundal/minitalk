@@ -5,10 +5,10 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)sig;
 	(void)ucontext;
 	g_data.value = g_data.value << 1;
-	if (g_data.status == 7)
+	if (g_data.status == VALUE_BIT_SIZE_BONUS)
 	{
 		ft_putchar_fd(g_data.value, 1);
-		g_data.status = 0;
+		g_data.status = 1;
 		g_data.value = 0;
 	}
 	else
@@ -22,10 +22,10 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)ucontext;
 	g_data.value = g_data.value << 1;
 	++g_data.value;
-	if (g_data.status == 7)
+	if (g_data.status == VALUE_BIT_SIZE_BONUS)
 	{
 		ft_putchar_fd(g_data.value, 1);
-		g_data.status = 0;
+		g_data.status = 1;
 		g_data.value = 0;
 	}
 	else
@@ -60,13 +60,12 @@ int	main(void)
 	ft_putnbr_fd(server_pid, 1);
 	ft_putchar_fd('\n', 1);
 	set_sigaction(&zero_reaction, &one_reaction);
-	g_data.client_pid = 0;
-	g_data.status = 0;
+	g_data.status = 1;
 	g_data.value = 0;
 	while (1)
 	{
 		pause();
-		usleep(MINITALK_DEALAY);
+		usleep(MINITALK_DEALAY_BONUS);
 		kill(g_data.client_pid, SIGUSR1);
 	}
 	return (0);
