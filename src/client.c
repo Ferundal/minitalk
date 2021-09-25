@@ -20,7 +20,7 @@ int	send_int(int d, pid_t server_pid)
 				return (1);
 			d = d - (temp_d << counter);
 		}
-		usleep(CLIENT_SEND_DEALAY);
+		usleep(MINITALK_DEALAY);
 	}
 	return (0);
 }
@@ -46,7 +46,7 @@ int	send_char(char c, pid_t server_pid)
 				return (1);
 			c = c - (temp_c << counter);
 		}
-		usleep(CLIENT_SEND_DEALAY);
+		usleep(MINITALK_DEALAY);
 	}
 	return (0);
 }
