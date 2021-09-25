@@ -5,7 +5,7 @@ int	send_int(int d, pid_t server_pid)
 	int		counter;
 	int 	temp_d;
 
-	counter = 32;
+	counter = 7;
 	while (counter-- > 0)
 	{
 		temp_d = d >> counter;
@@ -20,9 +20,8 @@ int	send_int(int d, pid_t server_pid)
 				return (1);
 			d = d - (temp_d << counter);
 		}
-		usleep(CLIENT_SEND_DEALAY);
+		pause();
 	}
-	pause();
 	return (0);
 }
 
@@ -82,7 +81,7 @@ int	main(int argc, char **argv)
 	conformation.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &conformation, NULL);
 	g_data.status = 0;
-	g_data.value = ft_strlen(argv[2]);
+	g_data.value = ft_strlen(argv[2]) * 8;
 	if (send_str(argv[2], server_pid) != 0)
 	{
 		ft_putstr_fd("Error while sending string\n", 2);
