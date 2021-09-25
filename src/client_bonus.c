@@ -21,7 +21,6 @@ int	send_char(int d, pid_t server_pid)
 			d = d - (temp_d << counter);
 		}
 		pause();
-		usleep(MINITALK_CLIENT_DEALAY_BONUS);
 	}
 	return (0);
 }
@@ -36,7 +35,7 @@ void	conformation_handler(int sig, siginfo_t *info, void *ucontext)
 	ft_putnbr_fd(g_data.status, 1);
 	ft_putchar_fd('/', 1);
 	ft_putnbr_fd(g_data.value, 1);
-	usleep(MINITALK_CLIENT_DEALAY_BONUS);
+	usleep(MINITALK_NO_OUTPUT_DEALAY_BONUS);
 }
 
 int	send_str(char *str, pid_t server_pid)

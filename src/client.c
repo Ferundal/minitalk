@@ -30,6 +30,7 @@ void	conformation_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)sig;
 	(void)ucontext;
 	(void)info;
+	usleep(MINITALK_NO_OUTPUT_DEALAY);
 }
 
 int	send_str(char *str, pid_t server_pid)

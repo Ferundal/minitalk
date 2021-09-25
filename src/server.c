@@ -4,7 +4,6 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)sig;
 	(void)ucontext;
-	(void)info;
 	g_data.value = g_data.value << 1;
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
@@ -25,7 +24,6 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)sig;
 	(void)ucontext;
-	(void)info;
 	g_data.value = g_data.value << 1;
 	++g_data.value;
 	if (g_data.status == VALUE_BIT_SIZE)
