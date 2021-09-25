@@ -31,10 +31,10 @@ void	conformation_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)ucontext;
 	(void)info;
 	++g_data.status;
+	ft_putchar_fd('\r', 1);
 	ft_putnbr_fd(g_data.status, 1);
 	ft_putchar_fd('/', 1);
 	ft_putnbr_fd(g_data.value, 1);
-	ft_putchar_fd('\n', 1);
 }
 
 int	send_str(char *str, pid_t server_pid)
