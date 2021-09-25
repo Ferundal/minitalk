@@ -66,6 +66,8 @@ int	main(void)
 	while (1)
 	{
 		pause();
+		usleep(MINITALK_DEALAY);
+		kill(g_data.client_pid, SIGUSR1);
 	}
 	return (0);
 }

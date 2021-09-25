@@ -1,11 +1,11 @@
 #include "minitalk.h"
 
-int	send_int(int d, pid_t server_pid)
+int	send_char(int d, pid_t server_pid)
 {
 	int		counter;
 	int 	temp_d;
 
-	counter = 32;
+	counter = 8;
 	while (counter-- > 0)
 	{
 		temp_d = d >> counter;
@@ -20,33 +20,7 @@ int	send_int(int d, pid_t server_pid)
 				return (1);
 			d = d - (temp_d << counter);
 		}
-		usleep(MINITALK_DEALAY);
-	}
-	return (0);
-}
-
-int	send_char(char c, pid_t server_pid)
-{
-	int		counter;
-	char	temp_c;
-
-	(void)server_pid;
-	counter = 8;
-	while (counter-- > 0)
-	{
-		temp_c = c >> counter;
-		if (temp_c == 0)
-		{
-			if (kill(server_pid, SIGUSR1) != 0)
-				return (1);
-		}
-		else
-		{
-			if (kill(server_pid, SIGUSR2) != 0)
-				return (1);
-			c = c - (temp_c << counter);
-		}
-		usleep(MINITALK_DEALAY);
+		pause();
 	}
 	return (0);
 }
@@ -84,10 +58,13 @@ int	check_args(int argc, char **argv, pid_t	*server_pid)
 
 int	main(int argc, char **argv)
 {
-	pid_t	server_pid;
+	pid_t				server_pid;
+	struct sigaction	conformation;
 
 	if (check_args(argc, argv, &server_pid) != 0)
 		return (1);
+	conformation.sa_handler = SIG_IGN;
+	sigaction(SIGUSR1, &conformation, NULL);
 	if (send_str(argv[2], server_pid) != 0)
 	{
 		ft_putstr_fd("Error while sending string\n", 2);
