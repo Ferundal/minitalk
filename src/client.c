@@ -21,6 +21,7 @@ int	send_char(int d, pid_t server_pid)
 			d = d - (temp_d << counter);
 		}
 		pause();
+		usleep(MINITALK_CLIENT_DEALAY);
 	}
 	return (0);
 }
@@ -30,7 +31,6 @@ void	conformation_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)sig;
 	(void)ucontext;
 	(void)info;
-	usleep(MINITALK_CLIENT_DEALAY);
 }
 
 int	send_str(char *str, pid_t server_pid)
