@@ -4,10 +4,14 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)sig;
 	(void)ucontext;
+	if (g_data.client_pid == 0)
+		g_data.client_pid = info->si_pid;
 	g_data.value = g_data.value << 1;
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
 		ft_putchar_fd(g_data.value, 1);
+		if (g_data.value == '\0')
+			g_data.client_pid = 0;
 		usleep(MINITALK_OUTPUT_DEALAY);
 		g_data.status = 1;
 		g_data.value = 0;
@@ -17,18 +21,21 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 		++g_data.status;
 		usleep(MINITALK_NO_OUTPUT_DEALAY);
 	}
-	g_data.client_pid = info->si_pid;
 }
 
 void	one_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	(void)sig;
 	(void)ucontext;
+	if (g_data.client_pid == 0)
+		g_data.client_pid = info->si_pid;
 	g_data.value = g_data.value << 1;
 	++g_data.value;
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
 		ft_putchar_fd(g_data.value, 1);
+		if (g_data.value == '\0')
+			g_data.client_pid = 0;
 		usleep(MINITALK_OUTPUT_DEALAY);
 		g_data.status = 1;
 		g_data.value = 0;
@@ -38,7 +45,6 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 		++g_data.status;
 		usleep(MINITALK_NO_OUTPUT_DEALAY);
 	}
-	g_data.client_pid = info->si_pid;
 }
 
 void	set_sigaction(struct sigaction *zero_reaction, \
@@ -70,6 +76,7 @@ int	main(void)
 	set_sigaction(&zero_reaction, &one_reaction);
 	g_data.status = 1;
 	g_data.value = 0;
+	g_data.client_pid = 0;
 	while (1)
 	{
 		pause();
