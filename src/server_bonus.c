@@ -8,7 +8,6 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 	if (g_data.status == 7)
 	{
 		ft_putchar_fd(g_data.value, 1);
-		kill(info->si_pid, SIGUSR1);
 		g_data.status = 0;
 		g_data.value = 0;
 	}
