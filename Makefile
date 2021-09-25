@@ -63,9 +63,9 @@ NAME_SERVER=		server
 NAME_CLIENT=		client
 
 ifdef COMPILE_BONUS
-NAME_SERVER=		server
+NAME_SERVER=		server_bonus
 
-NAME_CLIENT=		client
+NAME_CLIENT=		client_bonus
 endif
 
 CC=					cc
