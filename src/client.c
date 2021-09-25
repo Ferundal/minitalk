@@ -64,6 +64,8 @@ int	main(int argc, char **argv)
 	if (check_args(argc, argv, &server_pid) != 0)
 		return (1);
 	conformation.sa_handler = SIG_IGN;
+	sigemptyset(&conformation.sa_mask);
+	sigaddset(&conformation.sa_mask, SIGUSR1);
 	sigaction(SIGUSR1, &conformation, NULL);
 	if (send_str(argv[2], server_pid) != 0)
 	{
