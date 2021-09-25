@@ -1,6 +1,6 @@
 #include "minitalk.h"
 
-int	send_int(int d, pid_t server_pid)
+int	send_char(int d, pid_t server_pid)
 {
 	int		counter;
 	int 	temp_d;
@@ -40,9 +40,9 @@ void	conformation_handler(int sig, siginfo_t *info, void *ucontext)
 int	send_str(char *str, pid_t server_pid)
 {
 	while (*str != '\0')
-		if (send_int(*str++, server_pid) != 0)
+		if (send_char(*str++, server_pid) != 0)
 			return (1);
-	if (send_int('\n', server_pid) != 0)
+	if (send_char('\n', server_pid) != 0)
 		return (1);
 	return (0);
 }

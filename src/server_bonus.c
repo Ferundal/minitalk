@@ -13,7 +13,6 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 	}
 	else
 		++g_data.status;
-	kill(info->si_pid, SIGUSR1);
 }
 
 void	one_handler(int sig, siginfo_t *info, void *ucontext)
@@ -30,7 +29,6 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 	}
 	else
 		++g_data.status;
-	kill(info->si_pid, SIGUSR1);
 }
 
 void	set_sigaction(struct sigaction *zero_reaction, \
@@ -66,6 +64,7 @@ int	main(void)
 	while (1)
 	{
 		pause();
+		kill(info->si_pid, SIGUSR1);
 	}
 	return (0);
 }
