@@ -44,6 +44,7 @@ int	send_str(char *str, pid_t server_pid)
 			return (1);
 	if (send_char('\n', server_pid) != 0)
 		return (1);
+	ft_putchar_fd('\n', 1);
 	return (0);
 }
 
