@@ -59,14 +59,10 @@ int	check_args(int argc, char **argv, pid_t	*server_pid)
 int	main(int argc, char **argv)
 {
 	pid_t				server_pid;
-	struct sigaction	conformation;
 
 	if (check_args(argc, argv, &server_pid) != 0)
 		return (1);
-	conformation.sa_handler = SIG_IGN;
-	sigemptyset(&conformation.sa_mask);
-	sigaddset(&conformation.sa_mask, SIGUSR1);
-	sigaction(SIGUSR1, &conformation, NULL);
+	signal(SIGUSR1, SIG_IGN);
 	if (send_str(argv[2], server_pid) != 0)
 	{
 		ft_putstr_fd("Error while sending string\n", 2);
