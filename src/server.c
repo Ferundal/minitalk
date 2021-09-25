@@ -9,7 +9,7 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
 		ft_putchar_fd(g_data.value, 1);
-		usleep(MINITALK_SERVER_DEALAY);
+		usleep(MINITALK_OUTPUT_DEALAY);
 		g_data.status = 1;
 		g_data.value = 0;
 	}
@@ -28,12 +28,15 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
 		ft_putchar_fd(g_data.value, 1);
-		usleep(MINITALK_SERVER_DEALAY);
+		usleep(MINITALK_OUTPUT_DEALAY);
 		g_data.status = 1;
 		g_data.value = 0;
 	}
 	else
+	{
 		++g_data.status;
+		usleep(MINITALK_NO_OUTPUT_DEALAY);
+	}
 	g_data.client_pid = info->si_pid;
 }
 
@@ -69,7 +72,6 @@ int	main(void)
 	while (1)
 	{
 		pause();
-		usleep(MINITALK_CLIENT_DEALAY);
 		kill(g_data.client_pid, SIGUSR1);
 	}
 	return (0);
