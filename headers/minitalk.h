@@ -17,9 +17,9 @@
 # include <unistd.h>
 # include <signal.h>
 # include <limits.h>
-# define MINITALK_DEALAY 10
-# define VALUE_BIT_SIZE 7
-# define MINITALK_DEALAY_BONUS 10
+# define MINITALK_DEALAY 7
+# define VALUE_BIT_SIZE 8
+# define MINITALK_DEALAY_BONUS 7
 # define VALUE_BIT_SIZE_BONUS 8
 
 typedef struct s_current
