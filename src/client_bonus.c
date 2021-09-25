@@ -31,7 +31,7 @@ void	conformation_handler(int sig, siginfo_t *info, void *ucontext)
 	(void)ucontext;
 	(void)info;
 	++g_data.status;
-	ft_putnbr_fd(g_data.status, 1);\
+	ft_putnbr_fd(g_data.status, 1);
 	ft_putchar_fd('/', 1);
 	ft_putnbr_fd(g_data.value, 1);
 	ft_putchar_fd('\n', 1);
@@ -81,7 +81,7 @@ int	main(int argc, char **argv)
 	conformation.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &conformation, NULL);
 	g_data.status = 0;
-	g_data.value = ft_strlen(argv[2]) * 8;
+	g_data.value = (ft_strlen(argv[2]) + 1) * 8;
 	if (send_str(argv[2], server_pid) != 0)
 	{
 		ft_putstr_fd("Error while sending string\n", 2);
