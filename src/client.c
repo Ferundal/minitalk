@@ -20,17 +20,9 @@ int	send_char(int d, pid_t server_pid)
 				return (1);
 			d = d - (temp_d << counter);
 		}
-		pause();
 		usleep(MINITALK_CLIENT_DEALAY);
 	}
 	return (0);
-}
-
-void	conformation_handler(int sig, siginfo_t *info, void *ucontext)
-{
-	(void)sig;
-	(void)ucontext;
-	(void)info;
 }
 
 int	send_str(char *str, pid_t server_pid)
@@ -67,17 +59,9 @@ int	check_args(int argc, char **argv, pid_t	*server_pid)
 int	main(int argc, char **argv)
 {
 	pid_t				server_pid;
-	struct sigaction	conformation;
 
 	if (check_args(argc, argv, &server_pid) != 0)
 		return (1);
-	conformation.sa_sigaction = conformation_handler;
-	sigemptyset(&conformation.sa_mask);
-	sigaddset(&conformation.sa_mask, SIGUSR1);
-	conformation.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &conformation, NULL);
-	g_data.status = 0;
-	g_data.value = (ft_strlen(argv[2]) + 1) * 8;
 	if (send_str(argv[2], server_pid) != 0)
 	{
 		ft_putstr_fd("Error while sending string\n", 2);
