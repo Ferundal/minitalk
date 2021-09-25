@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <signal.h>
 # include <limits.h>
-# define MINITALK_DEALAY 10
+# define MINITALK_DEALAY 5
 
 typedef struct s_current
 {
