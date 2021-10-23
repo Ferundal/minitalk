@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjettie <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 14:07:33 by cjettie           #+#    #+#             */
+/*   Updated: 2021/10/23 14:07:35 by cjettie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 int	send_char(int d, pid_t server_pid)
 {
 	int		counter;
-	int 	temp_d;
+	int		temp_d;
 
 	counter = VALUE_BIT_SIZE_BONUS;
 	while (counter-- > 0)
@@ -43,7 +55,7 @@ int	send_str(char *str, pid_t server_pid)
 	while (*str != '\0')
 		if (send_char(*str++, server_pid) != 0)
 			return (1);
-	if (send_char('\n', server_pid) != 0)
+	if (send_char('\0', server_pid) != 0)
 		return (1);
 	ft_putchar_fd('\n', 1);
 	return (0);

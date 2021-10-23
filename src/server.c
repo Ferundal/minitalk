@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjettie <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 14:07:54 by cjettie           #+#    #+#             */
+/*   Updated: 2021/10/23 14:07:56 by cjettie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 void	zero_handler(int sig, siginfo_t *info, void *ucontext)
@@ -9,9 +21,13 @@ void	zero_handler(int sig, siginfo_t *info, void *ucontext)
 	g_data.value = g_data.value << 1;
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
-		ft_putchar_fd(g_data.value, 1);
 		if (g_data.value == '\0')
-			g_data.client_pid = 0;
+		{
+			g_data.last_byte = 1;
+			ft_putchar_fd('\n', 1);
+		}
+		else
+			ft_putchar_fd(g_data.value, 1);
 		usleep(MINITALK_OUTPUT_DEALAY);
 		g_data.status = 1;
 		g_data.value = 0;
@@ -33,9 +49,13 @@ void	one_handler(int sig, siginfo_t *info, void *ucontext)
 	++g_data.value;
 	if (g_data.status == VALUE_BIT_SIZE)
 	{
-		ft_putchar_fd(g_data.value, 1);
 		if (g_data.value == '\0')
-			g_data.client_pid = 0;
+		{
+			g_data.last_byte = 1;
+			ft_putchar_fd('\n', 1);
+		}
+		else
+			ft_putchar_fd(g_data.value, 1);
 		usleep(MINITALK_OUTPUT_DEALAY);
 		g_data.status = 1;
 		g_data.value = 0;
@@ -77,10 +97,16 @@ int	main(void)
 	g_data.status = 1;
 	g_data.value = 0;
 	g_data.client_pid = 0;
+	g_data.last_byte = 0;
 	while (1)
 	{
 		pause();
 		kill(g_data.client_pid, SIGUSR1);
+		if (g_data.last_byte == 1)
+		{
+			g_data.client_pid = 0;
+			g_data.last_byte = 0;
+		}
 	}
 	return (0);
 }
